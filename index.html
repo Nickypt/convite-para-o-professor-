@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSTEM_INVITATION: Padrinho</title>
+    <title>SYSTEM_INVITATION: Giroldo</title>
     <link rel="stylesheet" href="style-convite.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
@@ -29,7 +29,7 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const chars = "0101010101010101010101010101";
+        const chars = "01010101010101010101";
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
@@ -48,8 +48,8 @@
         }
         setInterval(drawMatrix, 35);
 
-        // EFEITO DIGITAÇÃO
-        const texto = "Professor, compilamos muitos momentos juntos... Mas falta um parâmetro essencial para nossa formatura: VOCÊ como nosso PADRINHO. Aceita fazer o deploy final conosco?";
+        // DIGITAÇÃO
+        const texto = "Professor Giroldo, compilamos muitos momentos juntos... Mas falta um parâmetro essencial para nossa formatura: VOCÊ como nosso PADRINHO. Aceita fazer o deploy final conosco?";
         let index = 0;
         function digitar() {
             if (index < texto.length) {
@@ -60,19 +60,15 @@
         }
         window.onload = digitar;
 
-        // LÓGICA DO BOTÃO
         function fugir() {
             const btn = document.getElementById('btn-nao');
+            btn.style.position = 'fixed';
             btn.style.left = Math.random() * 80 + "%";
             btn.style.top = Math.random() * 80 + "%";
-            btn.style.position = 'fixed';
-            btn.style.zIndex = '9999';
         }
 
         function erro() {
-            document.getElementById('main-card').classList.add('shake');
             alert("CRITICAL ERROR: Ação não permitida pelo Kernel da Turma!");
-            setTimeout(() => document.getElementById('main-card').classList.remove('shake'), 500);
         }
 
         function aceitar() {

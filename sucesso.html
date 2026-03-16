@@ -3,32 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Padrinho Confirmado!</title>
+    <title>Padrinho Confirmado: Giroldo</title>
     <link rel="stylesheet" href="style-sucesso.css">
 </head>
 <body>
+    <div class="background-glow"></div>
 
     <div class="fade-in">
         <div class="heart-icon">❤</div>
-        <h1>Status: PADRINHO_DEFINIDO!</h1>
+        <h1>STATUS: PADRINHO_DEFINIDO</h1>
+        <p style="color: #00ff41; font-family: monospace;">// Destino: Formatura 3º Ano TI</p>
         
         <div class="photo-container">
             <img src="turma.jpg" alt="Nossa Turma">
-            <p style="font-size: 0.7rem; color: #8b949e; margin: 10px;">./root/images/melhores_momentos.jpg</p>
+            <p class="photo-caption">./root/images/legacy_of_learning.jpg</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-box"><span class="stat-value">∞</span><span class="stat-label">APRENDIZADO</span></div>
+            <div class="stat-box"><span class="stat-value">100%</span><span class="stat-label">COMPILADO</span></div>
+            <div class="stat-box"><span class="stat-value">0</span><span class="stat-label">ERRORS</span></div>
         </div>
 
         <div class="letter-content">
-            <p>> <strong>Obrigado por aceitar, Professor!</strong></p>
-            <p>Sua paixão pelo ensino foi o <i>framework</i> que nos permitiu construir nossas carreiras. Ter você como padrinho é o reconhecimento de que, além de mestre, você é parte da nossa família de bits e bytes.</p>
-            <p style="color: #00ff41;">// A turma técnica do 3º ano te espera no altar da formatura!</p>
+            <p>> <strong>Caro Professor Giroldo,</strong></p>
+            <p>Sua paixão pelo ensino foi o <strong>Framework</strong> que nos deu estrutura. Mais do que variáveis e funções, você nos ensinou que a tecnologia é uma ferramenta para mudar o mundo.</p>
+            <p class="highlight">// Ter você como nosso Padrinho é o commit final que faltava para nossa história ser perfeita.</p>
+            <p class="signature">Ass: Sua Turma de Bits e Bytes.</p>
+        </div>
+
+        <div class="terminal-memories">
+            <div class="terminal-top">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="terminal-title">git log --memories --professor-giroldo</span>
+            </div>
+            <div class="terminal-body" id="log-container"></div>
         </div>
         
-        <p style="margin-top: 30px; opacity: 0.6;">[ Pressione F12 para ver a alegria no console ]</p>
+        <p style="margin-top: 40px; opacity: 0.4; font-family: monospace;">[ Pressione F12 para ver o segredo no console ]</p>
     </div>
 
     <script>
-        console.log("%c SUCESSO! Padrinho Confirmado!", "color: #00ff41; font-size: 30px; font-weight: bold;");
+        // EASTER EGG NO CONSOLE
+        const asciiArt = `
+    ______________________________________________________________
+    | _____ _____ _____ _____ _ _____ _____ |
+    | | __ \\|_ _|| __ \\| _ || | | _ || _ | |
+    | | | \\/ | | | |__) | | | || | | | | || | | | |
+    | | | __ | | | _ /| | | || | | | | || | | | |
+    | | |__\\ \\_| |_ | | \\ \\| |_| || |____| |_| || |_| | |
+    | \\____/|_____||_| \\_\\\\___/ |______\\___/ |___/ |
+    |____________________________________________________________|`;
+        console.log("%c" + asciiArt, "color: #00ff41; font-family: monospace; font-weight: bold;");
+        console.table({"ID": "Giroldo", "Cargo": "Padrinho de Honra", "Status": "Lenda"});
+
+        // LÓGICA DO TERMINAL DE DEPOIMENTOS
+        const depoimentos = [
+            { autor: "Lucas", msg: "Obrigado por transformar bugs em aprendizado!" },
+            { autor: "Ana Silva", msg: "Suas aulas foram o compilador da minha carreira." },
+            { autor: "Turma de TI", msg: "Giroldo, você é o nosso Root favorito!" },
+            { autor: "Felipe", msg: "Deploy realizado: De alunos para profissionais!" }
+        ];
+
+        function carregarLogs() {
+            const container = document.getElementById('log-container');
+            depoimentos.forEach((item, index) => {
+                setTimeout(() => {
+                    const entry = document.createElement('div');
+                    entry.className = 'log-entry';
+                    const hash = Math.random().toString(16).substring(2, 9);
+                    entry.innerHTML = `
+                        <div><span style="color:#d29922">commit ${hash}</span></div>
+                        <div>Author: <span style="color:#58a6ff">${item.autor}</span></div>
+                        <div style="color:#7ee787"> "${item.msg}"</div>
+                    `;
+                    container.appendChild(entry);
+                    container.scrollTop = container.scrollHeight;
+                }, index * 1200);
+            });
+        }
+        window.onload = carregarLogs;
     </script>
 </body>
 </html>
+
+
 

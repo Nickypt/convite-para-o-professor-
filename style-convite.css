@@ -1,88 +1,39 @@
-body, html { 
+html, body { 
     margin: 0; 
     padding: 0; 
     height: 100%; 
     overflow: hidden; 
     background: #000; 
     font-family: 'Courier New', Courier, monospace; 
+    cursor: url('https://cur.cursors-4u.net/symbols/sym-1/sym46.cur'), auto !important;
 }
 
-#matrix-canvas { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    z-index: 1; 
-    opacity: 0.3; 
-}
+#matrix-canvas { position: fixed; top: 0; left: 0; z-index: 1; opacity: 0.3; }
 
 .content {
-    position: relative; 
-    z-index: 2;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    height: 100vh; 
-    color: #00ff41;
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; color: #00ff41;
 }
 
 .card {
     background: rgba(0, 0, 0, 0.9);
     border: 1px solid #00ff41;
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
-    max-width: 600px;
-    width: 90%;
+    padding: 40px; border-radius: 10px;
+    text-align: center; box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+    max-width: 600px; width: 90%;
 }
 
-.terminal-header {
-    color: #888;
-    font-size: 0.8rem;
-    margin-bottom: 20px;
-}
+.terminal-header { color: #888; font-size: 0.8rem; margin-bottom: 20px; }
+#typing-text { min-height: 100px; margin-bottom: 30px; line-height: 1.6; font-size: 1.2rem; }
 
-#typing-text { 
-    min-height: 100px; 
-    margin-bottom: 30px; 
-    line-height: 1.6; 
-    font-size: 1.2rem; 
-}
-
-.btn-container { 
-    position: relative; 
-    height: 60px; 
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+.btn-container { position: relative; height: 60px; display: flex; justify-content: center; gap: 20px; }
 
 button {
-    padding: 12px 30px; 
-    border: 2px solid #00ff41; 
-    background: transparent;
-    color: #00ff41; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: 0.3s;
-    text-transform: uppercase;
+    padding: 12px 30px; border: 2px solid #00ff41; background: transparent;
+    color: #00ff41; font-weight: bold; transition: 0.3s; text-transform: uppercase;
 }
 
-#btn-sim:hover { 
-    background: #00ff41; 
-    color: #000; 
-    box-shadow: 0 0 20px #00ff41; 
-}
-
-#btn-nao { 
-    border-color: #ff3e3e; 
-    color: #ff3e3e; 
-}
-
-.shake { animation: shake 0.5s; }
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    100% { transform: translate(1px, -1px) rotate(0deg); }
-}
+#btn-sim:hover { background: #00ff41; color: #000; box-shadow: 0 0 20px #00ff41; }
+#btn-nao { border-color: #ff3e3e; color: #ff3e3e; z-index: 10; }
 
