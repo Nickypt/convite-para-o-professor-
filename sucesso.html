@@ -4,7 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Padrinho Confirmado: Giroldo</title>
-    <link rel="stylesheet" href="style-sucesso.css">
+    <style>
+        :root { --primary: #00ff41; --secondary: #007bff; --bg: #0d1117; --card-bg: #161b22; }
+
+        body { 
+            background: var(--bg); color: #e6edf3; font-family: 'Segoe UI', sans-serif; 
+            display: flex; flex-direction: column; align-items: center; padding: 40px 20px;
+            margin: 0; min-height: 100vh;
+            cursor: url('https://cur.cursors-4u.net/symbols/sym-1/sym46.cur'), auto !important;
+        }
+
+        .background-glow { position: fixed; top: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,255,65,0.05) 0%, transparent 70%); z-index: -1; }
+
+        .fade-in { animation: fadeIn 1.5s ease; display: flex; flex-direction: column; align-items: center; max-width: 800px; width: 100%; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { color: var(--primary); text-shadow: 0 0 10px rgba(0, 255, 65, 0.5); margin-bottom: 5px; }
+
+        .photo-container { padding: 8px; background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 20px; margin: 30px 0; width: fit-content; }
+        .photo-container img { width: 100%; max-width: 550px; border-radius: 15px; display: block; }
+        .photo-caption { font-family: monospace; font-size: 0.8rem; text-align: center; margin: 10px; opacity: 0.6; }
+
+        .stats-container { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center; }
+        .stat-box { background: var(--card-bg); border: 1px solid #30363d; padding: 15px; border-radius: 10px; text-align: center; min-width: 120px; }
+        .stat-value { display: block; color: var(--primary); font-weight: bold; font-family: monospace; font-size: 1.2rem; }
+        .stat-label { font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; }
+
+        .letter-content { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid #30363d; line-height: 1.8; text-align: left; width: 100%; box-sizing: border-box; }
+        .highlight { color: var(--primary); font-weight: bold; border-left: 3px solid var(--primary); padding-left: 15px; margin: 20px 0; }
+        .signature { text-align: right; color: var(--secondary); font-style: italic; margin-top: 20px; }
+
+        .terminal-memories { width: 100%; background: #010409; border: 1px solid #30363d; border-radius: 6px; margin-top: 30px; overflow: hidden; }
+        .terminal-top { background: #161b22; padding: 10px; display: flex; align-items: center; }
+        .dot { height: 10px; width: 10px; border-radius: 50%; margin-right: 5px; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        .terminal-title { color: #8b949e; font-size: 0.7rem; margin-left: 10px; font-family: monospace; }
+        .terminal-body { padding: 20px; height: 200px; overflow-y: auto; font-family: monospace; text-align: left; }
+        .log-entry { margin-bottom: 15px; font-size: 0.85rem; border-left: 2px solid #30363d; padding-left: 10px; }
+        
+        .heart-icon { color: #ff3e3e; font-size: 3rem; animation: pulse 1.5s infinite; margin-bottom: 10px; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    </style>
 </head>
 <body>
     <div class="background-glow"></div>
@@ -12,7 +52,7 @@
     <div class="fade-in">
         <div class="heart-icon">❤</div>
         <h1>STATUS: PADRINHO_DEFINIDO</h1>
-        <p style="color: #00ff41; font-family: monospace;">// Destino: Formatura 3º Ano TI</p>
+        <p style="color: #00ff41; font-family: monospace; margin: 0;">// Destino: Formatura 3º Ano TI</p>
         
         <div class="photo-container">
             <img src="turma.jpg" alt="Nossa Turma">
@@ -34,13 +74,13 @@
 
         <div class="terminal-memories">
             <div class="terminal-top">
-                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
                 <span class="terminal-title">git log --memories --professor-giroldo</span>
             </div>
             <div class="terminal-body" id="log-container"></div>
         </div>
         
-        <p style="margin-top: 40px; opacity: 0.4; font-family: monospace;">[ Pressione F12 para ver o segredo no console ]</p>
+        <p style="margin-top: 40px; opacity: 0.4; font-family: monospace; font-size: 0.8rem;">[ Pressione F12 para ver o segredo no console ]</p>
     </div>
 
     <script>
@@ -55,14 +95,13 @@
     | \\____/|_____||_| \\_\\\\___/ |______\\___/ |___/ |
     |____________________________________________________________|`;
         console.log("%c" + asciiArt, "color: #00ff41; font-family: monospace; font-weight: bold;");
-        console.table({"ID": "Giroldo", "Cargo": "Padrinho de Honra", "Status": "Lenda"});
 
-        // LÓGICA DO TERMINAL DE DEPOIMENTOS
         const depoimentos = [
             { autor: "Lucas", msg: "Obrigado por transformar bugs em aprendizado!" },
             { autor: "Ana Silva", msg: "Suas aulas foram o compilador da minha carreira." },
             { autor: "Turma de TI", msg: "Giroldo, você é o nosso Root favorito!" },
-            { autor: "Felipe", msg: "Deploy realizado: De alunos para profissionais!" }
+            { autor: "Felipe", msg: "Deploy realizado: De alunos para profissionais!" },
+            { autor: "Beatriz", msg: "Obrigada por cada linha de código e de vida ensinada." }
         ];
 
         function carregarLogs() {
@@ -86,6 +125,4 @@
     </script>
 </body>
 </html>
-
-
 
