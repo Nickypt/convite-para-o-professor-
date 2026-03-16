@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM_INVITATION: Padrinho</title>
+    <link rel="stylesheet" href="style-convite.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="content">
+        <div class="card" id="main-card">
+            <p class="terminal-header">> EXECUTE: convite_especial.sh</p>
+            <div id="typing-text"></div>
+            
+            <div class="btn-container">
+                <button id="btn-sim" onclick="aceitar()">ACEITAR</button>
+                <button id="btn-nao" onmouseover="fugir()" onclick="erro()">REJEITAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // EFEITO MATRIX
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const chars = "0101010101010101010101010101";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00ff41";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 35);
+
+        // EFEITO DIGITAÇÃO
+        const texto = "Professor, compilamos muitos momentos juntos... Mas falta um parâmetro essencial para nossa formatura: VOCÊ como nosso PADRINHO. Aceita fazer o deploy final conosco?";
+        let index = 0;
+        function digitar() {
+            if (index < texto.length) {
+                document.getElementById("typing-text").innerHTML += texto.charAt(index);
+                index++;
+                setTimeout(digitar, 50);
+            }
+        }
+        window.onload = digitar;
+
+        // LÓGICA DO BOTÃO
+        function fugir() {
+            const btn = document.getElementById('btn-nao');
+            btn.style.left = Math.random() * 80 + "%";
+            btn.style.top = Math.random() * 80 + "%";
+            btn.style.position = 'fixed';
+            btn.style.zIndex = '9999';
+        }
+
+        function erro() {
+            document.getElementById('main-card').classList.add('shake');
+            alert("CRITICAL ERROR: Ação não permitida pelo Kernel da Turma!");
+            setTimeout(() => document.getElementById('main-card').classList.remove('shake'), 500);
+        }
+
+        function aceitar() {
+            confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
+            setTimeout(() => { window.location.href = "sucesso.html"; }, 2000);
+        }
+    </script>
+</body>
+</html>
+
